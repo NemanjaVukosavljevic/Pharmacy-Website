@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lek za Vek</title>
+    <link rel="stylesheet" href="../dist/output.css">
+    <link rel="shortcut icon" href="../images/pill.png" type="image/x-icon">
+</head>
+<body class="min-h-screen flex flex-col w-full bg-green-600">
+    <header class="w-full h-[7rem] bg-white shadow-md transition lg:h-[7rem]">
+        <nav class="container h-5 m-auto py-3 lg:px-20 lg:py-4">
+            <div class="relative flex flex-wrap items-center justify-between">
+                <div class="relative z-10 w-full h-full px-6 flex items-center justify-between lg:w-auto">
+
+                    <div onclick="openModal()" class="shopping-cart lg:hidden lg:mt-0 flex items-center justify-center relative">
+                        <span><img src="../images/trolley.png" id="modal-trigger" class="lg:w-full cursor-pointer mobile-bg-rem" alt="trolley pic"></span>
+                        <span id="modalCartCount" class="text-white text-sm h-auto px-1 bg-red-600 rounded-full opacity-90 absolute bottom-[-8px] right-[-7px]">0</span>
+                    </div>
+                    
+
+                    <div class="mobile-bg-rem">
+                        <a href="">
+                            <img src="../images/apoteka-logo.jpg" class="h-[6rem]" alt="tailus logo">
+                        </a>
+                    </div>
+
+                    <div>
+                        <button id="hamburger" class="relative w-10 h-10 lg:hidden mobile-bg-rem">
+                            <div role="hidden" id="line" class="inset-0 w-6 h-0.5 m-auto rounded-full bg-gray-500 transition duration-300"></div>
+                            <div role="hidden" id="line2" class="inset-0 w-6 h-0.5 mt-1.5 m-auto rounded-full bg-gray-500 transition duration-300"></div>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="navlinks" class="hidden w-full px-6 bg-white transition lg:block lg:w-auto lg:px-0 lg:bg-transparent">
+                    <ul class="py-4 text-gray-500 text-lg lg:text-xl tracking-wide lg:flex lg:space-x-8 lg:py-0">
+                        <li>
+                            <a href="" class="block w-full py-3 transition lg:hover:text-green-600 mobile-bg-rem">Akcije</a>
+                        </li>
+                        <li>
+                            <a href="" class="block w-full py-3 transition lg:hover:text-green-600 mobile-bg-rem">Ponuda</a>
+                        </li>
+                        <li>
+                            <a href="" class="block w-full py-3 transition lg:hover:text-green-600 mobile-bg-rem">O nama</a>
+                        </li>
+                        <li class="mt-4 lg:mt-0 mb-3 lg:mb-3" id="contactButton" onclick="openModalTwo()">
+                            <a href="#" class="block w-full py-3 px-6 rounded-md bg-green-600 transition lg:hover:bg-green-500 mobile-bg-rem">
+                              <span class="block text-center text-white font-bold lg:text-base">Kontaktirajte nas</span>
+                            </a>
+                          </li>
+                        <li class="hidden mt-4 lg:mt-0 lg:flex lg:items-center lg:justify-center lg:relative">
+                            <span><img onclick="openModal()" src="../images/trolley.png" class="shopping-cart lg:w-full cursor-pointer mobile-bg-rem" alt="trolley pic"></span>
+                            <span id="otherCartCount" class="text-white text-base h-6 px-1 bg-red-600 rounded-full lg:opacity-90 lg:absolute lg:bottom-[-2px] lg:right-[-5px]">0</span>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section >
+        <div class="min-h-auto flex flex-col items-center  bg-green-600">
+            <div class="max-w-[1600px] min-h-full w-full p-4">
+                <div class="bg-white p-4 rounded shadow-md flex flex-col items-center">
+                    <h1 class="text-xl font-semibold mb-2">Pretražite proizvode</h1>
+                    <div class="flex flex-col lg:flex-row w-full mb-2 px-10">
+                        <input
+                            id="searchInput"
+                            type="text"
+                            placeholder="Search..."
+                            class="flex-1 border lg:border-green-500 p-2 mr-2"
+                        >
+                        <select id="categoryFilter" class="flex-2 border p-2 bg-green-600 text-white">
+                            <option value="all">Sve kategorije</option>
+                            <option value="vitamini-minerali">Vitamini i minerali</option>
+                            <option value="koza-kosa-nokti">Koza, kosa nokti</option>
+                            <option value="misicno-kostani-sistem">Misicno, kostani sistem</option>
+                            <option value="zdravlje-zene-trudnice">Zdravlje, zene i trudnice</option>
+                            <option value="srce-krvi-sudovi">Srce, krvni sudovi</option>
+                            <option value="beli-program">Beli program</option>
+                            <option value="medicinski-preparati">Medicinski preparati</option>
+                            <option value="kozmetika-dekorativa">Kozmetika, dekorativa</option>
+                            <option value="mrsavljenje-potencija">Mrsavljenje i potencija</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 lg:grid-cols-5 gap-4 w-full mt-4 mb-10 lg:mb-0" id="results">
+                    <!-- Product cards go here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-gray-200 lg:my-14 py-10">
+        <div class="h-auto flex flex-col lg:flex-row justify-center lg:justify-between my-[3rem] lg:my-8 mx-[2rem] lg:mx-[17rem] items-center">
+
+            <div class="max-w-sm bg-white border mb-3 lg:mb-0 border-gray-200 rounded-lg shadow dark:bg-gradient-to-r from-[#a8e063] to-[#56ab2f]">
+                
+                <img class="rounded-t-lg mt-5" src="../images/browsing (1).png" alt="" />
+                
+                <div class="p-5">
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-black">Istražite nasu ponudu!</h5>
+                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-800">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, minima. Consectetur animi perferendis labore, voluptatum quo eligendi, saepe vitae sint necessitatibus minus sunt possimus in excepturi exercitationem totam ut magnam.</p>
+                </div>
+            </div>
+
+            <div class="max-w-sm bg-white border mb-3 lg:mb-0 border-gray-200 rounded-lg shadow dark:bg-gradient-to-r from-[#a8e063] to-[#56ab2f] dark:border-white">
+
+                <img class="rounded-t-lg mt-5" src="../images/cargo.png" alt="" />
+                
+                <div class="p-5">
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-black">Poručite bilo koji proizvod!</h5>
+                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-800">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore atque commodi, ipsam iusto, esse tempora eius provident enim distinctio nemo quaerat laudantium! Dicta doloribus, dolor cumque vitae fugit officiis quisquam?</p>
+                </div>
+            </div>
+
+            <div class="max-w-sm bg-white border  border-gray-200 rounded-lg shadow dark:bg-gradient-to-r from-[#a8e063] to-[#56ab2f] dark:border-white">
+                
+                <img class="rounded-t-lg mt-5" src="../images/handshake (1).png" alt="" />
+                
+                <div class="p-5">
+                
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-black">Preuzmite paket!</h5>
+                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-800">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Blanditiis ullam, voluptas veniam quo earum nulla harum libero natus perferendis! Ullam assumenda voluptatem maxime dolorem magni ipsa minima tempore repudiandae earum.</p>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section>
+        <!-- Container for demo purpose -->
+<div class="container mt-12 lg:mt-0 mb-12 mx-auto md:px-6">
+    <!-- Section: Design Block -->
+    <section class="mb-32 text-center">
+      <div class="py-4 lg:py-12 md:px-12">
+        <div class="container mx-auto xl:px-32">
+          <div class="grid items-center lg:grid-cols-2">
+            <div class="mb-12 md:mt-12 lg:mt-0 lg:mb-0 mx-5 lg:mx-0">
+              <div
+                class="relative z-[1] block rounded-lg  px-6 py-12 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] backdrop-blur-[30px] dark:bg-[hsla(0,0%,5%,0.7)] dark:shadow-black/20 md:px-12 lg:-mr-14">
+                <h2 class="mb-12 text-white text-3xl font-bold">O nama</h2>
+                <p class="text-left text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti minus nisi nihil dolor error possimus facere soluta tempore laboriosam voluptatum, corporis dolorum perferendis adipisci iusto ex reiciendis inventore. Id, quod.
+                Libero ipsam, temporibus quasi nesciunt consectetur assumenda corporis quibusdam et est tenetur. Atque, eum accusamus? Corporis et, ipsa illo esse nesciunt adipisci, quia quam commodi sunt officiis, fugit quis in?
+                Voluptatibus amet modi ea suscipit eligendi quod aut nostrum! Sit rerum natus, ducimus consequatur optio animi est adipisci? Eaque, autem ex? Laboriosam corrupti non ex totam nobis quod expedita sequi?
+                Dolor suscipit eligendi eius atque quibusdam magni quaerat. Neque error, deleniti repellat enim adipisci suscipit illo rerum? Expedita cumque tempora vitae at, perspiciatis quo voluptatum sapiente tempore, nulla ut beatae.
+                Repellendus a architecto odio suscipit! Omnis dolorem temporibus blanditiis, quibusdam accusamus cumque eos iste, a repellendus eveniet explicabo in, adipisci commodi enim. Suscipit soluta minus tenetur sed fugit ipsam molestias!</p>
+              </div>
+            </div>
+            <div class="md:mb-12 lg:mb-0 mx-5 lg:mx-0">
+              <div
+                class="relative h-[700px] rounded-lg shadow-lg dark:shadow-black/20">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2827.8885571996684!2d20.64232867663938!3d44.864563473246704!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475a7ec2fe3e114f%3A0x5a36a830b04a9cb1!2s%C5%BDarka%20Zrenjanina%2043%2C%20Pan%C4%8Devo!5e0!3m2!1sen!2srs!4v1698201992139!5m2!1sen!2srs" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                  class="absolute left-0 top-0 h-full w-full rounded-lg"
+                  frameborder="0"
+                  allowfullscreen></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Section: Design Block -->
+  </div>
+  <!-- Container for demo purpose -->
+    </section>
+
+    
+<footer class="bg-white dark:bg-white">
+    <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
+        <div class="md:flex md:justify-between">
+          <div class="mb-6 md:mb-0">
+              <a href="#" class="flex items-center">
+                  <img src="../images/apoteka-logo.jpg" class="h-32 mr-3" alt="FlowBite Logo" />
+              </a>
+          </div>
+          <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
+              <div>
+                  <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-black">Resursi</h2>
+                  <ul class="text-gray-500 dark:text-gray-400 font-medium">
+                      <li class="mb-4">
+                          <a href="#" class="hover:underline">Akcije</a>
+                      </li>
+                      <li>
+                          <a href="#" class="hover:underline">Proizvodi</a>
+                      </li>
+                  </ul>
+              </div>
+              <div>
+                  <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-black">Zapratite nas</h2>
+                  <ul class="text-gray-500 dark:text-gray-400 font-medium">
+                      <li class="mb-4">
+                          <a href="#" class="hover:underline ">Instagram</a>
+                      </li>
+                      <li>
+                          <a href="#" class="hover:underline">Facebook</a>
+                      </li>
+                  </ul>
+              </div>
+              <div>
+                  <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-black">Kontakt</h2>
+                  <ul class="text-gray-500 dark:text-gray-400 font-medium">
+                      <li class="mb-4">
+                          <a href="#" class="hover:underline">nestonesto@gmail.com</a>
+                      </li>
+                      <li>
+                          <a href="#" class="hover:underline">+3210120010210</a>
+                      </li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+      <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+      <div class="sm:flex sm:items-center sm:justify-between">
+          <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a href="https://flowbite.com/" class="hover:underline">Lek za Vek NV</a>. All Rights Reserved.
+          </span>
+          <div class="flex mt-4 space-x-5 sm:justify-center sm:mt-0">
+              <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
+                <img src="../images/instagram.png" alt="">
+              </a>
+              <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
+                  <img src="../images/twitter.png" alt="">
+              </a>
+              <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
+                <img src="../images/facebook.png" alt="">
+              </a>
+              <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
+                <img src="../images/discord.png" alt="">
+              </a>
+          </div>
+      </div>
+    </div>
+</footer>
+
+    
+
+    <!-- MODALI  -->
+    
+
+    
+
+    <div id="modal" class="hidden fixed   z-50 left-[4%] lg:left-[20%] lg:right-[20%] top-[2rem] lg:top-[4rem]  w-[90%] lg:w-3/5 h-[90%] overflow-auto bg-white border rounded-md border-gray-600 animate-fade-in lg:p-12 p-0 py-6 lg:py-10 px-3">
+        <span class="close cursor-pointer text-gray-600 text-3xl font-bold absolute top-4 right-4" onclick="closeModal()">&times;</span>
+        <div class="h-full lg:h-full w-full flex flex-col justify-center items-center lg:min-h-auto bg-gray-100 lg:pt-20 rounded-lg">
+            <h1 class="mb-6 text-center text-2xl font-bold">KORPA</h1>
+            <div class="mx-auto lg:w-full w-full max-w-5xl justify-center items-center px-6 md:flex flex-col md:space-x-6 xl:px-0  lg:mb-[4rem]">
+                <!-- "No items in the cart" message -->
+                <div id="placeholderImage" class="mt-6 h-full flex flex-col justify-center items-center rounded-lg  text-black bg-white p-6 md:mt-0 w-full lg:w-[60%] text-center">
+                    <div class="flex items-center justify-center">
+                        <img src="../images/empty-cart.png" alt="empty cart" class="h-[10rem]">
+                    </div>
+                    <p class="font-bold">Vaša korpa je prazna</p>
+                </div>
+                <!-- Cart items list -->
+                <div id="cartItemList" class="hidden mt-6 h-auto max-h-[19rem] lg:max-h-[22rem] rounded-lg border bg-white p-6 shadow-md md:mt-0 w-full lg:w-[60%] overflow-auto">
+                    <!-- Cart items will be dynamically added here -->
+                </div>
+            </div>
+    
+            <div id="totalSection" class="hidden flex flex-col mt-2 h-[15rem] rounded-lg border bg-white p-6 shadow-md md:mt-0 w-full lg:w-full">
+                <div class="mb-2 flex justify-between">
+                    <p class="text-gray-700">Dostava</p>
+                    <p id="shippingChoice" class="total-price text-center"></p>
+                </div>
+                <div class="flex justify-between ">
+                    <p class="text text-2xl lg:text-3xl">Ukupno</p>
+                    <p id="totalTotalPrice" class="text-black font-bold"></p>
+                </div>
+                <hr class="my-4" />
+                <button class=" w-full rounded-md bg-green-600 py-1.5 font-medium text-blue-50 hover:bg-green-500 transition duration-200">Poruči</button>
+            </div>
+        </div>
+    </div>
+    
+    
+
+    <div id="modalContact" class="hidden fixed   z-50 left-[4%] lg:left-[20%] lg:right-[20%] top-[2rem] lg:top-[4rem]  w-[90%] lg:w-3/5 h-[90%] overflow-auto bg-white border rounded-md border-gray-600 animate-fade-in lg:p-12 p-0 py-6 lg:py-10 px-3">
+        <span class="close cursor-pointer text-gray-600 text-3xl font-bold absolute top-4 right-4" onclick="closeContactModal()">&times;</span>
+        
+        <section class="bg-white bg-white rounded-lg">
+            <div class="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
+                <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 dark:text-gray-600">Kontaktirajte nas</h2>
+                <p class="mb-8 lg:mb-16 font-normal text-center text-gray-500 dark:text-black sm:text-xl">Imate tehničkih problema? Želite da nam pošaljete feedback? Potrebni su Vam detalji o željenom proizvodu? Kontaktirajte nas!</p>
+                <form action="#" class="">
+                    <div>
+                        <label for="email" class="block mb-2 lg:mb4 text-sm font-medium text-gray-900 dark:text-gray-600">Vaš email</label>
+                        <input type="email" id="email" class="shadow-sm mb-3 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-700 dark:text-black dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" placeholder="korisnik@email.com" required>
+                    </div>
+                    <div>
+                        <label for="subject" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-600">Naslov</label>
+                        <input type="text" id="subject" class="block mb-2 lg:mb4 p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 dark:bg-white dark:border-gray-600 dark:placeholder-gray-700 dark:text-black dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" placeholder="Kako možemo da Vam pomognemo?" required>
+                    </div>
+                    <div class="sm:col-span-2">
+                        <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-600">Vaša poruka</label>
+                        <textarea id="message" rows="6" class="block mb-2 lg:mb4 p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-white dark:border-gray-600 dark:placeholder-gray-700 dark:text-black dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Ostavite poruku..."></textarea>
+                    </div>
+                    <button type="submit" class="py-3 px-5 lg:px-[2rem] text-sm font-medium text-center text-white rounded-lg bg-green-600 lg:hover:bg-green-500 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 transition duration-200">Pošalji</button>
+                </form>
+            </div>
+          </section>
+
+
+    </div>
+    
+
+</div>
+
+
+
+            
+
+    <script src="../dist/script.js"></script>
+</body>
+</html>

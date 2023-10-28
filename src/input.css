@@ -1,0 +1,51 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+
+.mobile-bg-rem {
+    -webkit-tap-highlight-color: transparent;
+}
+
+@keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.5s ease-in-out;
+  }
+
+@keyframes fade-out {
+from {
+    opacity: 1;
+}
+to {
+    opacity: 0;
+}
+}
+
+.animate-fade-out {
+animation: fade-out 0.5s ease-in-out;
+}
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px rgb(255, 255, 255) inset !important; /* Set the background color to the desired color */
+}
+
+/* Change the color of the focus outline for input fields */
+input:focus,
+textarea:focus {
+    outline: 1px solid #00ff0d; /* Replace #ff0000 with your desired color */
+    border-color: #00ff0d;
+}
+  
+
+
+  
+
+  
