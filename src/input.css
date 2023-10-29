@@ -43,6 +43,13 @@ textarea:focus {
     outline: 1px solid #00ff0d; /* Replace #ff0000 with your desired color */
     border-color: #00ff0d;
 }
+
+.neka {
+  background: -webkit-linear-gradient(to right, #a8e063, #56ab2f);
+  background: linear-gradient(to right, #a8e063, #56ab2f);
+
+}
+
   
 
 
